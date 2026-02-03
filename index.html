@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #ffe6eb;
+      text-align: center;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 14px 26px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #aaa;
+      color: white;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 id="question">Will you be my Valentine? 💖</h1>
+
+  <button id="yesBtn" onclick="yesClicked()">Yes 💘</button>
+  <button id="noBtn">No 💔</button>
+
+  <script>
+    const noTexts = [
+      "No 💔",
+      "Are you sure?",
+      "Really sure?? 😳",
+      "Think again 🤨",
+      "That hurts 😭",
+      "Last chance 🥺",
+      "Okay wow rude",
+      "You’re not escaping 😈"
+    ];
+
+    let hoverCount = 0;
+    const noBtn = document.getElementById("noBtn");
+
+    function moveAndChangeNo() {
+      // Change text
+      noBtn.innerText = noTexts[hoverCount % noTexts.length];
+      hoverCount++;
+
+      // Random position (safe margins)
+      const padding = 20;
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Desktop (hover)
+    noBtn.addEventListener("mouseenter", moveAndChangeNo);
+
+    // Mobile (touch)
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault(); // stops click
+      moveAndChangeNo();
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <h1>YAYYYY 💕🥰</h1>
+        <p>You officially made my day 💐</p>
+        <p>Happy Valentine’s 💌</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
